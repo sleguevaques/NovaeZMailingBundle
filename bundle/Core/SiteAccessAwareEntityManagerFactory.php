@@ -22,6 +22,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\UnderscoreNamingStrategy;
 use Doctrine\Persistence\ManagerRegistry as Registry;
 use eZ\Bundle\EzPublishCoreBundle\ApiLoader\RepositoryConfigurationProvider;
+use Symfony\Component\Cache\Adapter\DoctrineDbalAdapter;
 
 class SiteAccessAwareEntityManagerFactory
 {
@@ -75,12 +76,12 @@ class SiteAccessAwareEntityManagerFactory
         $connection = $this->registry->getConnection($connectionName);
 
         /** @var \Doctrine\DBAL\Connection $connection */
-        $cache = new ArrayCache();
+        $cache = new DoctrineDbalAdapter();
         $config = new Configuration();
-        $config->setMetadataCacheImpl($cache);
+        $config->setMetadataCache($cache);
         $driverImpl = $config->newDefaultAnnotationDriver(__DIR__.'/../Entity', false);
         $config->setMetadataDriverImpl($driverImpl);
-        $config->setQueryCacheImpl($cache);
+        $config->setQueryCache($cache);
         $config->setProxyDir($this->settings['cache_dir'].'/eZMailingBundle/');
         $config->setProxyNamespace('eZMailingBundle\Proxies');
         $config->setAutoGenerateProxyClasses($this->settings['debug']);
