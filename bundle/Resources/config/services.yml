@@ -6,7 +6,7 @@ services:
         public: false
         bind:
             $logger: "@monolog.logger.novaezmailing"
-            $entityManager: "@novaezmailing.doctrine.entity_manager"
+#            $entityManager: "@novaezmailing.doctrine.entity_manager"
             $translationHelper: "@ezpublish.translation_helper"
 
     Novactive\Bundle\eZMailingBundle\Command\:
@@ -57,7 +57,8 @@ services:
     novaezmailing.menu.campaigns:
         class: Knp\Menu\MenuItem
         factory: ['@Novactive\Bundle\eZMailingBundle\Menu\Builder','createCampaignMenu']
-        arguments: ["@request_stack", "@novaezmailing.doctrine.entity_manager"]
+        arguments: ["@request_stack", "@doctrine.orm.entity_manager"]
+#        arguments: ["@request_stack", "@novaezmailing.doctrine.entity_manager"]
         tags:
             - { name: knp_menu.menu, alias: novaezmailing.menu.campaigns }
 
@@ -111,6 +112,6 @@ services:
             $resolver: "@doctrine.orm.default_entity_listener_resolver"
             $settings: { debug: "%kernel.debug%", cache_dir: "%kernel.cache_dir%" }
 
-    novaezmailing.doctrine.entity_manager:
-        class: Doctrine\ORM\EntityManagerInterface
-        factory: ['@Novactive\Bundle\eZMailingBundle\Core\SiteAccessAwareEntityManagerFactory','get']
+#    novaezmailing.doctrine.entity_manager:
+#        class: Doctrine\ORM\EntityManagerInterface
+#        factory: ['@Novactive\Bundle\eZMailingBundle\Core\SiteAccessAwareEntityManagerFactory','get']
