@@ -64,7 +64,7 @@ class MailingContent
                 'mailingId' => $mailing->getId(),
                 'siteaccess' => $mailing->getSiteAccess(),
             ],
-            UrlGeneratorInterface::ABSOLUTE_PATH
+            UrlGeneratorInterface::ABSOLUTE_URL
         );
 
         $crawler = $client->request('/GET', $url);
