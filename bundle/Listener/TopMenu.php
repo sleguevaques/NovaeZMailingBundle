@@ -25,7 +25,7 @@ class TopMenu
             'eznovamailing',
             [
                 'route' => 'novaezmailing_dashboard_index',
-                'label' => 'Nova eZ Mailing',
+                'label' => 'Newsletters',
             ]
         );
     }

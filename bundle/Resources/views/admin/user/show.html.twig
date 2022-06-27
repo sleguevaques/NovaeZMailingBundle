@@ -3,9 +3,9 @@
 
 {% block novezmailing_breadcrumb %}
     <ol class="breadcrumb px-4">
-        <li class="breadcrumb-item"><a href="{{ path("novaezmailing_dashboard_index") }}">Nova eZ Mailing</a></li>
+        <li class="breadcrumb-item"><a href="{{ path("novaezmailing_dashboard_index") }}">Newsletters</a></li>
         <li class="breadcrumb-item"><a href="{{ path("novaezmailing_user_index") }}">{{"campaign.breadcrumb.users"|trans}}</a></li>
-        <li class="breadcrumb-item active">{{ item.gender }} {{ item.firstName }} {{ item.lastname }}</li>
+        <li class="breadcrumb-item active">{{ item.email }}</li>
     </ol>
 {% endblock %}
 {% block novezmailing_title %}{{ item.gender }} {{ item.firstName }} {{ item.lastname }}{% endblock %}

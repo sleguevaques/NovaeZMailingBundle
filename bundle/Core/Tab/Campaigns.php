@@ -31,7 +31,7 @@ class Campaigns extends AbstractTab
 
     public function getName(): string
     {
-        return /* @Desc("Nova eZ Mailing - Campaigns Tab") */
+        return /* @Desc("Newsletters - Campaigns Tab") */
             $this->translator->trans('campaigns.tab.name', ['count' => count($this->campaigns)], 'ezmailing');
     }
 

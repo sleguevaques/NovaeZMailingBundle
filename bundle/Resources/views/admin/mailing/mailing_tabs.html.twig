@@ -87,7 +87,7 @@
     </div>
     <div class="modal fade" tabindex="-1" role="dialog" id="novaezmailingmailingtestmodal">
         <div class="modal-dialog" role="document">
-            <form class="modal-content" action="{{ path("novaezmailing_mailing_test", {mailing: item.id}) }}" method="post">
+            <form class="modal-content" style="padding: 10px;" action="{{ path("novaezmailing_mailing_test", {mailing: item.id}) }}" method="post">
                 <div class="modal-header">
                     <h5 class="modal-title">{{"mailing.mailing_tabs.test_mailing"|trans}}: {{ item.name }}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -114,7 +114,7 @@
     </div>
     <div class="modal fade" tabindex="-1" role="dialog" id="novaezmailingmailingconfirmmodal">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
+            <div class="modal-content" style="padding: 10px;">
                 <div class="modal-header">
                     <h5 class="modal-title">{{"mailing.mailing_tabs.confirm_sending"|trans}}: {{ item.name }}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
