@@ -29,8 +29,10 @@
                             {{ content|raw }}
                         </div>
                         <div class="col-1 ez-context-menu">
-                            {{ rightbar|raw }}
-                        </div>
+                            <div class="ez-sticky-container">
+                                {{ rightbar|raw }}
+                            </div>
+                        </div>Data missing
                     {% endif %}
                 </div>
                 {% include "@NovaeZMailing/admin/layout/footer.html.twig" with {} only %}
