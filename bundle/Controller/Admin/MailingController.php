@@ -198,11 +198,12 @@ class MailingController
         $machine = $workflows->get($mailing);
         if ($machine->can($mailing, 'test')) {
             $ccEmail = $request->request->get('cc');
+            $processor->execute($mailing, $mailing->getCampaign()->getReturnPathEmail());
             if (\strlen($ccEmail) > 0) {
                 $processor->execute($mailing, $ccEmail);
-                $machine->apply($mailing, 'test');
-                $entityManager->flush();
             }
+            $machine->apply($mailing, 'test');
+            $entityManager->flush();
         }
 
         return new RedirectResponse($router->generate('novaezmailing_mailing_show', ['mailing' => $mailing->getId()]));

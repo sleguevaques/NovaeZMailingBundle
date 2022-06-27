@@ -22,7 +22,7 @@ workflows:
                 from: [draft,tested]
                 to: tested
             confirm:
-                from: tested
+                from: [draft, tested]
                 to: pending
             process:
                 from: pending
