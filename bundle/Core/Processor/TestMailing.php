@@ -14,7 +14,7 @@ declare(strict_types=1);
 
 namespace Novactive\Bundle\eZMailingBundle\Core\Processor;
 
-use Novactive\Bundle\eZMailingBundle\Core\Mailer\Mailing as MailingMailer;
+use Novactive\Bundle\eZMailingBundle\Core\Mailer\NewsletterMailer as MailingMailer;
 use Novactive\Bundle\eZMailingBundle\Entity\Mailing;
 
 class TestMailing extends Processor implements TestMailingProcessorInterface

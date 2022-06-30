@@ -6,18 +6,17 @@ namespace Novactive\Bundle\eZMailingBundle\Core\Mailer;
 
 use Novactive\Bundle\eZMailingBundle\Core\DataHandler\Registration;
 use Novactive\Bundle\eZMailingBundle\Core\DataHandler\Unregistration;
-use Novactive\Bundle\eZMailingBundle\Core\Provider\MessageContentInforca;
-use Novactive\Bundle\eZMailingBundle\Core\Provider\MailingContent;
+use Novactive\Bundle\eZMailingBundle\Core\Provider\RawMessageContent;
 use Novactive\Bundle\eZMailingBundle\Entity\ConfirmationToken;
 use Novactive\Bundle\eZMailingBundle\Entity\Mailing as MailingEntity;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Mime\RawMessage;
 
-class SimpleMailerInforca extends Mailer
+class SimpleMailer extends Mailer
 {
     /**
-     * @var MessageContentInforca
+     * @var RawMessageContent
      */
     private $messageProvider;
 
@@ -26,7 +25,7 @@ class SimpleMailerInforca extends Mailer
      */
     private $logger;
 
-    public function __construct(MessageContentInforca $messageProvider, LoggerInterface $logger)
+    public function __construct(RawMessageContent $messageProvider, LoggerInterface $logger)
     {
         $this->messageProvider = $messageProvider;
         $this->logger = $logger;
@@ -60,9 +59,6 @@ class SimpleMailerInforca extends Mailer
     {
         $this->logger->debug("Simple Mailer sends {$message->getSubject()}.");
         $message->getHeaders()->addTextHeader('X-Transport', 'simple_mailer');
-
-//        dump($message);
-//        dump($this->mailer); exit;
 
         return $this->mailer->send($message);
     }

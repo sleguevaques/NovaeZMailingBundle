@@ -85,14 +85,23 @@ services:
     # Mailers
     Novactive\Bundle\eZMailingBundle\Core\Mailer\Factory: ~
 
-    Novactive\Bundle\eZMailingBundle\Core\Mailer\Simple:
-        public: true
-        factory: ['@Novactive\Bundle\eZMailingBundle\Core\Mailer\Factory','get']
-        arguments: ['simple_mailer']
+    #    Novactive\Bundle\eZMailingBundle\Core\Mailer\Simple:
+    #        public: true
+    #        factory: ['@Novactive\Bundle\eZMailingBundle\Core\Mailer\Factory','get']
+    #        arguments: ['simple_mailer']
+    #
+    #    Novactive\Bundle\eZMailingBundle\Core\Mailer\Mailing:
+    #        factory: [ '@Novactive\Bundle\eZMailingBundle\Core\Mailer\Factory','get' ]
+    #        arguments: [ 'mailing_mailer' ]
 
-    Novactive\Bundle\eZMailingBundle\Core\Mailer\Mailing:
-        factory: ['@Novactive\Bundle\eZMailingBundle\Core\Mailer\Factory','get']
-        arguments: ['mailing_mailer']
+    Novactive\Bundle\eZMailingBundle\Core\Mailer\SimpleMailer:
+        public: true
+        factory: [ '@Novactive\Bundle\eZMailingBundle\Core\Mailer\Factory','get' ]
+        arguments: [ 'simple_mailer' ]
+
+    Novactive\Bundle\eZMailingBundle\Core\Mailer\NewsletterMailer:
+        factory: [ '@Novactive\Bundle\eZMailingBundle\Core\Mailer\Factory','get' ]
+        arguments: [ 'newsletter_mailer' ]
 
     # Twig
     Novactive\Bundle\eZMailingBundle\Twig\Extension:

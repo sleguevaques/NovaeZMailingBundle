@@ -14,16 +14,14 @@ declare(strict_types=1);
 
 namespace Novactive\Bundle\eZMailingBundle\Core\Mailer;
 
-use Swift_Mailer;
-
 abstract class Mailer
 {
     /**
-     * @var Swift_Mailer
+     * @var \Symfony\Component\Mailer\Mailer
      */
     protected $mailer;
 
-    public function setMailer(Swift_Mailer $mailer): self
+    public function setMailer(\Symfony\Component\Mailer\Mailer $mailer): self
     {
         $this->mailer = $mailer;
 

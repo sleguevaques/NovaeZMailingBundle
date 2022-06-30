@@ -17,7 +17,7 @@ namespace Novactive\Bundle\eZMailingBundle\Core\Processor;
 use Carbon\Carbon;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
-use Novactive\Bundle\eZMailingBundle\Core\Mailer\Mailing as MailingMailer;
+use Novactive\Bundle\eZMailingBundle\Core\Mailer\NewsletterMailer as MailingMailer;
 use Novactive\Bundle\eZMailingBundle\Core\Utils\Clock;
 use Novactive\Bundle\eZMailingBundle\Entity\Mailing;
 use Symfony\Component\Workflow\Registry;

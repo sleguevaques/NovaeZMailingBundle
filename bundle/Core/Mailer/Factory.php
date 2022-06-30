@@ -18,10 +18,12 @@ use Doctrine\ORM\EntityManagerInterface;
 use eZ\Publish\Core\MVC\ConfigResolverInterface;
 use Novactive\Bundle\eZMailingBundle\Core\Provider\Broadcast;
 use Novactive\Bundle\eZMailingBundle\Core\Provider\MailingContent;
-use Novactive\Bundle\eZMailingBundle\Core\Provider\MessageContent;
+use Novactive\Bundle\eZMailingBundle\Core\Provider\RawMessageContent;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
 use RuntimeException;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mailer\Transport;
 
 class Factory
 {
@@ -36,7 +38,7 @@ class Factory
     private $container;
 
     /**
-     * @var MessageContent
+     * @var RawMessageContent
      */
     private $messageContentProvider;
 
@@ -61,16 +63,22 @@ class Factory
     private $entityManager;
 
     /**
+     * @var \Symfony\Component\Mailer\MailerInterface
+     */
+    private $mailer;
+
+    /**
      * Factory constructor.
      */
     public function __construct(
         ConfigResolverInterface $configResolver,
         ContainerInterface $container,
-        MessageContent $messageContentProvider,
+        RawMessageContent $messageContentProvider,
         MailingContent $mailingContentProvider,
         LoggerInterface $logger,
         Broadcast $broadcastProvider,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
+        \Symfony\Component\Mailer\MailerInterface $mailer
     ) {
         $this->configResolver = $configResolver;
         $this->container = $container;
@@ -79,25 +87,24 @@ class Factory
         $this->logger = $logger;
         $this->broadcastProvider = $broadcastProvider;
         $this->entityManager = $entityManager;
+        $this->mailer = $mailer;
     }
 
     public function get(string $mailerDef): Mailer
     {
-        $mailer = $this->container->get((string) $this->configResolver->getParameter($mailerDef, 'nova_ezmailing'));
-        /* @var \Swift_Mailer $mailer */
         if ('simple_mailer' === $mailerDef) {
-            return (new Simple($this->messageContentProvider, $this->logger))->setMailer($mailer);
+            return (new SimpleMailer($this->messageContentProvider, $this->logger))->setMailer($this->mailer);
         }
-        if ('mailing_mailer' === $mailerDef) {
-            $mailing = new Mailing(
-                $this->container->get(Simple::class),
+        if ('newsletter_mailer' === $mailerDef) {
+            $mailing = new NewsletterMailer(
+                $this->container->get(SimpleMailer::class),
                 $this->mailingContentProvider,
                 $this->logger,
                 $this->broadcastProvider,
                 $this->entityManager
             );
 
-            return $mailing->setMailer($mailer);
+            return $mailing->setMailer($this->mailer);
         }
 
         throw new RuntimeException('Mailers are not correctly defined.');
