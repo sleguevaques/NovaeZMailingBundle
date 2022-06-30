@@ -68,8 +68,7 @@ class RawMessageContent
         }
 
         $message->from(
-            $this->configResolver->getParameter('email_from_address', 'nova_ezmailing'),
-            $this->configResolver->getParameter('email_from_name', 'nova_ezmailing')
+            $this->configResolver->getParameter('email_from_address', 'nova_ezmailing')
         );
 
         $message->returnPath($this->configResolver->getParameter('email_return_path', 'nova_ezmailing'));
