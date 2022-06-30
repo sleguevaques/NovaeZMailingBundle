@@ -1,11 +1,25 @@
 {% trans_default_domain "ezmailing" %}
-{% extends pagelayout %}
+{% extends '@ezdesign/full/generic.html.twig' %}
 
-{% block content %}
+{% set title = "form.mailinglists.unregister"|trans %}
 
+{% block content_after %}
+    {% import '@core/_components.html.twig' as components %}
     {% if isConfirmed %}
-        <p>{{ "register.unregister_confirmation.confirmed"|trans }}</p>
+        {{
+        components.alert({
+            content: "register.unregister_confirmation.confirmed"|trans,
+            statut: "success",
+            icon: ''
+        })
+        }}
     {% else %}
-        <p>{{ "register.unregister_confirmation.failed"|trans }}</p>
+        {{
+        components.alert({
+            content: "register.unregister_confirmation.failed"|trans,
+            statut: "alert",
+            icon: ''
+        })
+        }}
     {% endif %}
 {% endblock %}

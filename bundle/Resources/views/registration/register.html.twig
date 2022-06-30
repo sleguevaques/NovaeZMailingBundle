@@ -1,14 +1,26 @@
 {% trans_default_domain "ezmailing" %}
-{% extends pagelayout %}
+{% extends '@ezdesign/full/generic.html.twig' %}
 
-{% block content %}
+{% set title = "form.mailinglists"|trans %}
+
+{% block content_after %}
     {% if form is defined %}
+        {% form_theme form with ['@ezdesign/content/form_fields.html.twig', _self ] %}
+
         {{ form_start(form) }}
         {{ form_row(form.user) }}
         {{ form_row(form.mailingLists) }}
-        <input type="submit" value="Register" name="Register"/>
+        <input type="submit" value={{ "form.register"|trans }} name="Register" class="btn no-underline btn--base w-full md:w-auto btn--default"/>
+
         {{ form_end(form) }}
     {% else %}
-        <p>{{ "registration.register.confirmation_email_message"|trans }}</p>
+        {% import '@core/_components.html.twig' as components %}
+        {{
+            components.alert({
+                content: "registration.register.confirmation_email_message"|trans,
+                statut: "neutral",
+                icon: ''
+            })
+        }}
     {% endif %}
 {% endblock %}

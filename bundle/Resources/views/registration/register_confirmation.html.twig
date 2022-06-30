@@ -1,11 +1,25 @@
 {% trans_default_domain "ezmailing" %}
-{% extends pagelayout %}
+{% extends '@ezdesign/full/generic.html.twig' %}
 
-{% block content %}
+{% set title = "form.mailinglists"|trans %}
 
+{% block content_after %}
+    {% import '@core/_components.html.twig' as components %}
     {% if isConfirmed %}
-        <p>{{ "register.register.confirmation"|trans }}</p>
+        {{
+            components.alert({
+                content: "register.register.confirmation"|trans,
+                statut: "success",
+                icon: ''
+            })
+        }}
     {% else %}
-        <p>{{ "register.register.failed"|trans }}</p>
+        {{
+            components.alert({
+                content: "register.register.failed"|trans,
+                statut: "alert",
+                icon: ''
+            })
+        }}
     {% endif %}
 {% endblock %}

@@ -244,6 +244,8 @@ menu.campaign_menu.subscriptions: subscriptions
 mailing.buildform.recuring_mailing: "Is it a reccuring Mailing?"
 mailing.buildform.which_siteaccess: "On which siteaccess?"
 form.subject: Subject
+form.register: Register
+form.mailinglists: Register to Mailing Lists
 mailinglisttype.buildform.withapproval: "With approval?"
 mailinglisttype.buildform.siteaccess_limit: Siteaccess limit
 import.form.file: File

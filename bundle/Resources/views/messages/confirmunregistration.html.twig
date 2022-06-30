@@ -1,19 +1,20 @@
 {% trans_default_domain "ezmailing" %}
-{% extends "@NovaeZMailing/eZViews/mailing_base.html.twig" %}
+{% extends "@ezdesign/mailing_base.html.twig" %}
 
-{% block unregistrer %}{% endblock %}
-
-{% block preheader_message %}
-    {{ "messages.confirm_unregistration.confirmation"|trans }}
-{% endblock %}
+{% block unregister %}{% endblock %}
 
 {% block body %}
-    <p>{{ "messages.confirm_unregistration.process1"|trans }}</p>
-    <ul>
-        {% for mailinglist in unregistration.mailingLists %}
-            <li>{{ mailinglist.name }}</li>
-        {% endfor %}
-    </ul>
+    <h2>{{ "messages.confirm_unregistration.confirmation"|trans }}</h2>
 
-    <p><a href="{{ path('novaezmailing_unregistration_confirm', {id:token.id}) }}">{{ "messages.confirm_unregistration.process2"|trans }}</a></p>
+    <p>{{ "messages.confirm_unregistration.process1"|trans }}</p>
+
+    {% if unregistration.mailingLists|length > 1 %}
+        <ul>
+            {% for mailinglist in unregistration.mailingLists %}
+                <li>{{ mailinglist.name }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <p><a href="{{ url('novaezmailing_unregistration_confirm', {id:token.id}) }}">{{ "messages.confirm_unregistration.process2"|trans }}</a></p>
 {% endblock %}

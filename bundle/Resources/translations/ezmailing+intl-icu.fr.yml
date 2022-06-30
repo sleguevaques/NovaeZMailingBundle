@@ -244,6 +244,10 @@ menu.campaign_menu.subscriptions: Inscriptions
 mailing.buildform.recuring_mailing: "Est-ce un envoi périodique?"
 mailing.buildform.which_siteaccess: "Sur quel siteaccess?"
 form.subject: Sujet
+form.register: S'inscrire
+form.unregister: Se désinscrire
+form.mailinglists: S'inscrire à la Newsletter
+form.mailinglists.unregister: Se désinscrire de la Newsletter
 mailinglisttype.buildform.withapproval: "Avec approbation?"
 mailinglisttype.buildform.siteaccess_limit: Limite Siteaccess
 import.form.file: Fichier
