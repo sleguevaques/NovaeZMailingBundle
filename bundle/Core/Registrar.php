@@ -23,7 +23,7 @@ use eZ\Publish\Core\MVC\ConfigResolverInterface;
 use eZ\Publish\Core\MVC\Symfony\SiteAccess;
 use Novactive\Bundle\eZMailingBundle\Core\DataHandler\Registration;
 use Novactive\Bundle\eZMailingBundle\Core\DataHandler\Unregistration;
-use Novactive\Bundle\eZMailingBundle\Core\Mailer\Simple as SimpleMailer;
+use Novactive\Bundle\eZMailingBundle\Core\Mailer\SimpleMailer as SimpleMailer;
 use Novactive\Bundle\eZMailingBundle\Entity\ConfirmationToken;
 use Novactive\Bundle\eZMailingBundle\Entity\MailingList;
 use Novactive\Bundle\eZMailingBundle\Entity\Registration as RegistrationEntity;
