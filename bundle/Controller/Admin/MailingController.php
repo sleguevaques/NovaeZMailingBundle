@@ -46,7 +46,6 @@ class MailingController
     /**
      * @Route("/show/{mailing}", name="novaezmailing_mailing_show")
      * @Template()
-     * @IsGranted("view", subject="mailing")
      */
     public function showAction(
         Mailing $mailing,
@@ -72,7 +71,6 @@ class MailingController
 
     /**
      * @Template()
-     * @IsGranted("view", subject="mailing")
      */
     public function mailingTabsAction(
         Mailing $mailing,
@@ -166,7 +164,6 @@ class MailingController
      * @Route("/confirm/{mailing}", name="novaezmailing_mailing_confirm")
      * @Route("/archive/{mailing}", name="novaezmailing_mailing_archive")
      * @Route("/abort/{mailing}",   name="novaezmailing_mailing_cancel")
-     * @IsGranted("view", subject="mailing")
      */
     public function statusAction(
         Request $request,
@@ -185,7 +182,6 @@ class MailingController
 
     /**
      * @Route("/test/{mailing}", name="novaezmailing_mailing_test", methods={"POST"})
-     * @IsGranted("view", subject="mailing")
      */
     public function testAction(
         Request $request,

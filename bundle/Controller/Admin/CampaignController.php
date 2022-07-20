@@ -38,7 +38,6 @@ class CampaignController
 {
     /**
      * @Template()
-     * @Security("is_granted('view', campaign)")
      */
     public function campaignTabsAction(
         Campaign $campaign,
@@ -80,7 +79,6 @@ class CampaignController
      * @Route("/show/subscriptions/{campaign}/{status}/{page}/{limit}", name="novaezmailing_campaign_subscriptions",
      *                                              defaults={"page":1, "limit":10, "status":"all"})
      * @Template()
-     * @Security("is_granted('view', campaign)")
      */
     public function subscriptionsAction(
         Campaign $campaign,
@@ -105,7 +103,6 @@ class CampaignController
     /**
      * @Route("/show/mailings/{campaign}/{status}", name="novaezmailing_campaign_mailings")
      * @Template()
-     * @Security("is_granted('view', campaign)")
      */
     public function mailingsAction(Campaign $campaign, EntityManagerInterface $entityManager, string $status): array
     {
@@ -127,7 +124,6 @@ class CampaignController
     /**
      * @Route("/edit/{campaign}", name="novaezmailing_campaign_edit")
      * @Route("/create", name="novaezmailing_campaign_create")
-     * @Security("is_granted('edit', campaign)")
      * @Template()
      *
      * @return array|RedirectResponse
@@ -167,7 +163,6 @@ class CampaignController
 
     /**
      * @Route("/delete/{campaign}", name="novaezmailing_campaign_remove")
-     * @Security("is_granted('edit', campaign)")
      */
     public function deleteAction(
         Campaign $campaign,
