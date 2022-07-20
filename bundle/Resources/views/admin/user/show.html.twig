@@ -39,7 +39,9 @@
                 </tr>
                 <tr>
                     <th>{{"generic.users.table.birthdate"|trans}}</th>
-                    <td>{{ item.birthDate|format_datetime(novaezmailing.dateformat.date, novaezmailing.dateformat.date) }}</td>
+                    {% if item.birthDate is not empty %}
+                        <td>{{ item.birthDate|format_datetime(novaezmailing.dateformat.date, novaezmailing.dateformat.date) }}</td>
+                    {% endif %}
                 </tr>
                 <tr>
                     <th>{{"generic.users.table.phone"|trans}}</th>
