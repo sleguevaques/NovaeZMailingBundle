@@ -61,16 +61,16 @@ class SendMailing extends Processor implements SendMailingProcessorInterface
             if ($clock->match($mailing)) {
                 ++$matched;
                 $this->logger->notice("{$mailing->getName()} has been matched pending and ready to be send.");
-                if (
-                    null !== $mailing->getLastSent() &&
-                    $mailing->getLastSent()->format('Y-m-d-H') === $clockDate->format('Y-m-d-H')
-                ) {
-                    //Security here, if is has been sent during this current hour already, do nothing
-                    $this->logger->debug(
-                        "{$mailing->getName()} has been matched and IGNORED. It has been sent during this hour already."
-                    );
-                    continue;
-                }
+//                if (
+//                    null !== $mailing->getLastSent() &&
+//                    $mailing->getLastSent()->format('Y-m-d-H') === $clockDate->format('Y-m-d-H')
+//                ) {
+//                    //Security here, if is has been sent during this current hour already, do nothing
+//                    $this->logger->debug(
+//                        "{$mailing->getName()} has been matched and IGNORED. It has been sent during this hour already."
+//                    );
+//                    continue;
+//                }
 
                 $workflow = $this->workflows->get($mailing);
                 if ($workflow->can($mailing, 'process')) {
