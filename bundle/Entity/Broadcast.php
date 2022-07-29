@@ -82,6 +82,7 @@ class Broadcast
     {
         $this->emailSentCount = 0;
         $this->created = new DateTime();
+        $this->created->setTimezone( new \DateTimeZone('Europe/Monaco') );
     }
 
     public function getId(): int
@@ -104,6 +105,7 @@ class Broadcast
     public function setStarted(DateTime $started): self
     {
         $this->started = $started;
+        $this->started->setTimezone( new \DateTimeZone('Europe/Monaco') );
 
         return $this;
     }
@@ -116,6 +118,7 @@ class Broadcast
     public function setEnded(DateTime $ended): self
     {
         $this->ended = $ended;
+        $this->ended->setTimezone( new \DateTimeZone('Europe/Monaco') );
 
         return $this;
     }

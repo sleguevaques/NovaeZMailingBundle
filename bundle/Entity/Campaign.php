@@ -102,6 +102,7 @@ class Campaign implements eZ\ContentInterface
         $this->mailingLists = new ArrayCollection();
         $this->mailings = new ArrayCollection();
         $this->created = new DateTime();
+        $this->created->setTimezone( new \DateTimeZone('Europe/Monaco') );
         $this->siteaccessLimit = [];
     }
 
