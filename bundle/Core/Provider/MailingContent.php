@@ -94,7 +94,7 @@ class MailingContent
         $message = new Email();
 
         $message->html($html, 'utf8');
-        $message->subject("[Gels de Fonds] " . $mailing->getSubject());
+        $message->subject("[Gel des Fonds] " . $mailing->getSubject());
         $message->from($campaign->getSenderEmail());
         $message->to($recipient->getEmail());
         $message->cc($campaign->getReportEmail());
