@@ -29,17 +29,9 @@
     {% for item in items %}
         <tr>
             <td class="text-center">{{ item.id }}</td>
-            <td><a href="{{ path('novaezmailing_user_show', {user:item.id}) }}" data-toggle="popover"
-                   title="{{ item.gender }} {{ item.firstname }} {{ item.lastName }}"
-                   data-content="
-                        {% if item.birthDate is not empty %}<p><strong>{{"generic.users.table.birthdate"|trans}}</strong>: {{ item.birthDate|format_datetime(novaezmailing.dateformat.date, novaezmailing.dateformat.date)|default('') }}</p>{% endif %}
-                        {% if item.phone is not empty %}<p><strong>{{"generic.users.table.phone"|trans}}</strong>: {{ item.phone }}</p>{% endif %}
-                        {% if item.zipcode is not empty or item.city is not empty or item.city is not empty or item.state is not empty %}<p><strong>{{"generic.users.table.location"|trans}}</strong>:{{ item.zipcode }} {{ item.city }} {{ item.state }}</p>{% endif %}
-                        {% if item.jobTitle is not empty or item.company is not empty %}<p><strong>{{"generic.users.table.job"|trans}}</strong>: {{ item.jobTitle }} {{ item.company }}</p>{% endif %}
-                   "
-                   data-html="true"
-                   data-trigger="hover"
-                >{{ item.email }}</a></td>
+            <td>
+                <a href="{{ path('novaezmailing_user_show', {user:item.id}) }}" data-toggle="popover" title="Modifier">{{ item.email }}</a>
+            </td>
             {% if withStatus %}
                 <td><span class="badge badge-{{ item.statusStyle }}">{{ ("generic.users.status."~item.status)|trans }}</span></td>
             {% endif %}

@@ -77,21 +77,19 @@ class Registrar
         }
         $userRepo = $this->entityManager->getRepository(User::class);
         $fetchUser = $userRepo->findOneByEmail($user->getEmail());
-
         if (!$fetchUser instanceof User) {
             $user->setStatus(User::PENDING);
             $user->setOrigin($this->siteAccess->name);
             $fetchUser = $user;
             $this->entityManager->persist($fetchUser);
             $this->entityManager->flush();
+            $token = $this->createConfirmationToken(
+                ConfirmationToken::REGISTER,
+                $fetchUser,
+                $registration->getMailingLists()
+            );
+            $this->mailer->sendRegistrationConfirmation($registration, $token);
         }
-
-        $token = $this->createConfirmationToken(
-            ConfirmationToken::REGISTER,
-            $fetchUser,
-            $registration->getMailingLists()
-        );
-        $this->mailer->sendRegistrationConfirmation($registration, $token);
     }
 
     public function askForUnregisterConfirmation(Unregistration $unregistration): bool
