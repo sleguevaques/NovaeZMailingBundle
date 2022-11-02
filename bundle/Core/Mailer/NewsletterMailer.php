@@ -94,8 +94,23 @@ class NewsletterMailer extends Mailer
             foreach ($recipients as $user) {
                 /** @var User $user */
                 $contentMessage = $this->contentProvider->getContentMailing($mailing, $user, $broadcast);
-                $this->sendMessage($contentMessage);
-                ++$recipientCounts;
+
+                // Try to send 3 times by recipients then log email error and keep going
+                for ($sendTry = 1; $sendTry <= 3; $sendTry++) {
+                    try {
+                        $this->sendMessage($contentMessage);
+                        $sendTry = 10;
+                        ++$recipientCounts;
+                        break;
+                    } catch ( \Exception $exception) {
+                        $this->logger->notice("Mailer failed for email : {$user->getEmail()}. Attempt sending : $sendTry.");
+
+                        if ( $sendTry == 3) {
+                            $this->logger->error("This recipient ({$user->getEmail()}) will not receive the newsletter !!!");
+                            $this->logger->error($exception->getMessage());
+                        }
+                    }
+                }
 
                 if (0 === $recipientCounts % 10) {
                     $broadcast->setEmailSentCount($recipientCounts);
