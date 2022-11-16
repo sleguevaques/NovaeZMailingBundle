@@ -29,7 +29,7 @@ class UserType extends AbstractType
                 'email',
                 EmailType::class,
                 ['attr' => [
-                        'pattern' => '^[a-zA-Z0-9.-]+@[a-zA-Z0-9-]+\.(?:[a-zA-Z0-9-]){2,}$'
+                        'pattern' => '^[a-zA-Z0-9.-]+@[a-zA-Z0-9-.]+\.(?:[a-zA-Z0-9-]){2,}$'
                     ]
                 ]
             );
